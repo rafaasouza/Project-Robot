@@ -6,6 +6,8 @@ Projeto de robô 2WD que desvia de obstáculos
 
 
 
-# AUTORES
-- Levy
-- Rafael
+* AUTORES
+  
+ Levy
+
+Rafael
