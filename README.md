@@ -8,9 +8,9 @@ _____________________________________________
 
 * AUTORES
   
- Levy
+Levy Oliveira
 
-Rafael
+Rafael Souza
 
-## wiki
-[acessar wiki](https://github.com/rafaasouza/Project-Robot/wiki)
+## Wiki
+[acessar Wiki do projeto](https://github.com/rafaasouza/Project-Robot/wiki)
