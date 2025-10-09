@@ -16,16 +16,16 @@ Ele utiliza sensores, controle de motores e lógica de desvio para navegação a
 
 ## Funcionalidades
 
-- Detectar obstáculos à frente usando sensor ultrassônico (ou similar)  
+- Detectar obstáculos à frente usando sensor ultrassônico
 - Acionar motores para virar ou ajustar direção  
 - Controle simples para frente / esquerda / direita  
 - Estrutura modular (sensores, motores, controle)
 
 ## Tecnologias / Hardware / Componentes
 
-Liste todos os componentes físicos e a parte eletrônica usada:
+Todos os componentes físicos e eletrônica usada:
 
-| Componente | Quantidade | Observações / modelo sugerido |
+| Componente | Quantidade | Observações |
 |------------|------------|-------------------------------|
 | Arduino Uno | 1 | Placa de controle |
 | Motor DC | 2 | Duas rodas motrizes |
@@ -33,7 +33,7 @@ Liste todos os componentes físicos e a parte eletrônica usada:
 | Sensor ultrassônico (HC-SR04) | 1 | Para medir distância frente |
 | Pilha | 6 |
 | Jumpers, fios, estrutura
-| chassi
+| Chassi
 
 
 
