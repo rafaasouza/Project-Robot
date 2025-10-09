@@ -9,10 +9,6 @@ Projeto de robô 2WD que desvia de obstáculos / Obstacle-dodging 2WD robot
 Este projeto tem como objetivo construir um robô de duas rodas (2WD) que detecta obstáculos e desvia deles automaticamente.  
 Ele utiliza sensores, controle de motores e lógica de desvio para navegação autônoma em ambientes simples.
 
-##  Autores
-
-- Levy Oliveira  
-- Rafael Souza  
 
 ## Funcionalidades
 
@@ -35,7 +31,10 @@ Todos os componentes físicos e eletrônica usada:
 | Jumpers, fios, estrutura
 | Chassi
 
+##  Autores
 
+- Levy Oliveira  
+- Rafael Souza  
 
 
 
