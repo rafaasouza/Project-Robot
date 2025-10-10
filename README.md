@@ -25,7 +25,6 @@ Todos os componentes físicos e eletrônica usada:
 |------------|------------|-------------------------------|
 | Arduino Uno | 1 | Placa de controle |
 | Motor DC | 2 | Duas rodas motrizes |
-| Ponte H | 1 | L298N  |
 | Sensor ultrassônico (HC-SR04) | 1 | Para medir distância frente |
 | Pilha | 6 |
 | Jumpers, fios, estrutura
