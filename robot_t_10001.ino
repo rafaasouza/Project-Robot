@@ -1,0 +1,115 @@
+#include <DistanceSensor.h>
+
+constexpr int TrigPin = 2;
+constexpr int EchoPin = 3;
+DistanceSensor<TrigPin, EchoPin> sensor;
+
+// Configurações
+const int VEL_BASE_ESQUERDA = 105;
+const int VEL_BASE_DIREITA = 110; 
+const int LIMITE_OBSTACULO = 20;
+const int TEMPO_GIRO_180 = 700;
+
+// Fator de correção (aumenta a força da roda esquerda durante giros)
+const float AJUSTE_GIRO_ESQUERDA = 1.2;
+
+bool primeiraCurvaFeita = false; // controla o lado da curva
+
+void setup() {
+  pinMode(5, OUTPUT);
+  pinMode(6, OUTPUT);
+  pinMode(9, OUTPUT);
+  pinMode(10, OUTPUT);
+
+  sensor.begin();
+  Serial.begin(9600);
+
+  parar();
+  delay(1000);
+}
+
+// ======== Funções de movimento ========
+
+void parar() {
+  digitalWrite(5, LOW);
+  analogWrite(6, 0);
+  digitalWrite(9, LOW);
+  analogWrite(10, 0);
+}
+
+void moverFrente() {
+  digitalWrite(5, HIGH);
+  analogWrite(6, VEL_BASE_ESQUERDA);
+  digitalWrite(9, LOW);
+  analogWrite(10, VEL_BASE_DIREITA);
+}
+
+void moverRe() {
+  digitalWrite(5, LOW);
+  analogWrite(6, VEL_BASE_ESQUERDA);
+  digitalWrite(9, HIGH);
+  analogWrite(10, VEL_BASE_DIREITA);
+}
+
+void girarDireita() {
+  int velE = VEL_BASE_ESQUERDA * AJUSTE_GIRO_ESQUERDA;
+  int velD = VEL_BASE_DIREITA;
+
+  digitalWrite(5, HIGH);  // esquerda frente
+  analogWrite(6, velE);
+  digitalWrite(9, HIGH);  // direita ré
+  analogWrite(10, velD);
+}
+
+void girarEsquerda() {
+  int velE = VEL_BASE_ESQUERDA * AJUSTE_GIRO_ESQUERDA;
+  int velD = VEL_BASE_DIREITA;
+
+  digitalWrite(5, LOW);   // esquerda ré
+  analogWrite(6, velE);
+  digitalWrite(9, LOW);   // direita frente
+  analogWrite(10, velD);
+}
+
+int medirDistancia() {
+  int d = sensor.tick();
+  if (d <= 0 || d > 200) return -1;
+  return d;
+}
+
+// ======== Lógica principal ========
+
+void loop() {
+  int distancia = medirDistancia();
+  if (distancia == -1) return;
+
+  Serial.print("Distancia: ");
+  Serial.println(distancia);
+
+  if (distancia > LIMITE_OBSTACULO) {
+    moverFrente();
+  } else {
+    parar();
+    delay(200);
+
+    if (!primeiraCurvaFeita) {
+      Serial.println("1º obstáculo detectado — Girando à direita!");
+      girarDireita();
+      delay(TEMPO_GIRO_180);
+      parar();
+      delay(200);
+      primeiraCurvaFeita = true;
+    } else {
+      Serial.println("Obstáculo detectado — Girando à esquerda!");
+      girarEsquerda();
+      delay(TEMPO_GIRO_180);
+      parar();
+      delay(200);
+    }
+
+    Serial.println("Caminho livre — seguindo em frente!");
+    moverFrente();
+  }
+
+  delay(10);
+}
